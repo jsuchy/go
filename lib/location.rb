@@ -19,7 +19,6 @@ class Location
 
   def valid_column?(size)
     last_valid_column = ("A".."Z").to_a[size - 1]
-    puts "last_valid_column #{last_valid_column}"
-    ["A"..last_valid_column] === column
+    ("A"..last_valid_column) === column
   end
 end

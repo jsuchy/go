@@ -38,4 +38,17 @@ describe Location do
 
     location.valid_column?(8).should be_true
   end
+
+  it "column is valid if it is A" do
+    location = Location.new("A8")
+
+    location.valid_column?(8).should be_true
+  end
+
+  it "column is valid if it is the right endpoint" do
+    location = Location.new("H3")
+
+    location.valid_column?(8).should be_true
+    
+  end
 end

@@ -11,14 +11,10 @@ class Board
     @size = size
   end
 
-  def last_valid_column
-    ("A".."Z").to_a[@size - 1]
-  end
-
   def move(location_string, marker)
     location = Location.new(location_string)
-    raise InvalidMoveError.new("invalid row") if location.row > @size
-    raise InvalidMoveError.new("invalid column") unless ["A"..last_valid_column] === location.column || location.column == "A" || location.column == last_valid_column
+    raise InvalidMoveError.new("invalid row") unless location.valid_row?(@size)
+    raise InvalidMoveError.new("invalid column") unless location.valid_column?(@size)
     @board[location_string] = marker
   end
 
