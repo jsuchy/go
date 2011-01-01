@@ -15,6 +15,18 @@ describe Board do
     board.size.should == 9
   end
 
+  it "exposes possible rows" do
+    board = Board.new(4)
+
+    board.rows.should == [1, 2, 3, 4]
+  end
+
+  it "exposes possible columns" do
+    board = Board.new(4)
+
+    board.columns.should == ["A", "B", "C", "D"]
+  end
+
   it "tracks moves" do
     board.move("A1", :black)
     board.move("A2", :white)

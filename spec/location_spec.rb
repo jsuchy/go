@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'location'
+require 'board'
 
 describe Location do
 
@@ -15,40 +16,44 @@ describe Location do
     location.row.should == 52
   end
 
-  it "row is not valid if greater than size" do
-    location = Location.new("A9")
+  context "valid checks" do
 
-    location.valid_row?(8).should be_false
-  end
+    let(:board) { Board.new(8) }
 
-  it "row is valid if equal to size" do
-    location = Location.new("A8")
+    it "row is not valid if greater than size" do
+      location = Location.new("A9")
 
-    location.valid_row?(8).should be_true
-  end
+      location.valid_row?(board).should be_false
+    end
 
-  it "column is not valid if greater than size" do
-    location = Location.new("I8")
+    it "row is valid if equal to size" do
+      location = Location.new("A8")
 
-    location.valid_column?(8).should be_false
-  end
+      location.valid_row?(board).should be_true
+    end
 
-  it "column is valid if inside range of A to size'th letter" do
-    location = Location.new("C8")
+    it "column is not valid if greater than size" do
+      location = Location.new("I8")
 
-    location.valid_column?(8).should be_true
-  end
+      location.valid_column?(board).should be_false
+    end
 
-  it "column is valid if it is A" do
-    location = Location.new("A8")
+    it "column is valid if inside range of A to size'th letter" do
+      location = Location.new("C8")
 
-    location.valid_column?(8).should be_true
-  end
+      location.valid_column?(board).should be_true
+    end
 
-  it "column is valid if it is the right endpoint" do
-    location = Location.new("H3")
+    it "column is valid if it is A" do
+      location = Location.new("A8")
 
-    location.valid_column?(8).should be_true
-    
+      location.valid_column?(board).should be_true
+    end
+
+    it "column is valid if it is the right endpoint" do
+      location = Location.new("H3")
+
+      location.valid_column?(board).should be_true
+    end
   end
 end

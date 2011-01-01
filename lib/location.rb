@@ -1,8 +1,8 @@
 class Location
   attr_accessor :row, :column
 
-  def initialize(location_as_string)
-    @location = location_as_string
+  def initialize(location)
+    @location = location
   end
 
   def column
@@ -13,12 +13,11 @@ class Location
     @location[1..-1].to_i
   end
 
-  def valid_row?(size)
-    row <= size
+  def valid_row?(board)
+    board.rows.include?(row)
   end
 
-  def valid_column?(size)
-    last_valid_column = ("A".."Z").to_a[size - 1]
-    ("A"..last_valid_column) === column
+  def valid_column?(board)
+    board.columns.include?(column)
   end
 end

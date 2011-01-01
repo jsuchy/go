@@ -11,6 +11,14 @@ class Board
     @size = size
   end
 
+  def rows
+    (1..@size).to_a
+  end
+
+  def columns
+    ("A".."Z").to_a.slice(0, @size)
+  end
+
   def move(location_string, marker)
     location = Location.new(location_string)
     raise InvalidMoveError.new("invalid row") unless location.valid_row?(@size)
