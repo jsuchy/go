@@ -10,14 +10,10 @@ class Location
   end
 
   def row
-    @location[1..-1].to_i
+    row_candidate = @location[1..-1].to_i
+
+    raise StandardError.new("invalid row") if row_candidate.to_s != @location[1..-1]
+    row_candidate
   end
 
-  def valid_row?(board)
-    board.rows.include?(row)
-  end
-
-  def valid_column?(board)
-    board.columns.include?(column)
-  end
 end

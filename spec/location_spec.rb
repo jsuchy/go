@@ -16,44 +16,10 @@ describe Location do
     location.row.should == 52
   end
 
-  context "valid checks" do
+  it "raises an exception if row is not a number" do
+    location = Location.new("DZ")
 
-    let(:board) { Board.new(8) }
-
-    it "row is not valid if greater than size" do
-      location = Location.new("A9")
-
-      location.valid_row?(board).should be_false
-    end
-
-    it "row is valid if equal to size" do
-      location = Location.new("A8")
-
-      location.valid_row?(board).should be_true
-    end
-
-    it "column is not valid if greater than size" do
-      location = Location.new("I8")
-
-      location.valid_column?(board).should be_false
-    end
-
-    it "column is valid if inside range of A to size'th letter" do
-      location = Location.new("C8")
-
-      location.valid_column?(board).should be_true
-    end
-
-    it "column is valid if it is A" do
-      location = Location.new("A8")
-
-      location.valid_column?(board).should be_true
-    end
-
-    it "column is valid if it is the right endpoint" do
-      location = Location.new("H3")
-
-      location.valid_column?(board).should be_true
-    end
+    lambda { location.row }.should raise_error
   end
+
 end

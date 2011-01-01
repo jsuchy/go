@@ -19,10 +19,18 @@ class Board
     ("A".."Z").to_a.slice(0, @size)
   end
 
+  def valid_row?(row)
+    rows.include?(row)
+  end
+
+  def valid_column?(column)
+    columns.include?(column)
+  end
+
   def move(location_string, marker)
     location = Location.new(location_string)
-    raise InvalidMoveError.new("invalid row") unless location.valid_row?(@size)
-    raise InvalidMoveError.new("invalid column") unless location.valid_column?(@size)
+    raise InvalidMoveError.new("invalid row") unless valid_row?(location.row)
+    raise InvalidMoveError.new("invalid column") unless valid_column?(location.column)
     @board[location_string] = marker
   end
 

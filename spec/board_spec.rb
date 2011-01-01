@@ -26,6 +26,30 @@ describe Board do
 
     board.columns.should == ["A", "B", "C", "D"]
   end
+  
+  it "row is not valid if greater than size" do
+    board.valid_row?(20).should be_false
+  end
+
+  it "row is valid if equal to size" do
+    board.valid_row?(19).should be_true
+  end
+
+  it "column is not valid if greater than size" do
+    board.valid_column?("T").should be_false
+  end
+
+  it "column is valid if inside range of A to size'th letter" do
+    board.valid_column?("C").should be_true
+  end
+
+  it "column is valid if it is A" do
+    board.valid_column?("A").should be_true
+  end
+
+  it "column is valid if it is the right endpoint" do
+    board.valid_column?("S").should be_true
+  end
 
   it "tracks moves" do
     board.move("A1", :black)
